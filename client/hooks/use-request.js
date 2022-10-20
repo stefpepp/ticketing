@@ -1,9 +1,10 @@
-import { useCallback, useState, useReducer, useEffect, useMemo } from "react";
+import { useCallback, useState, useReducer, useEffect } from "react";
 import axios from "axios";
 
-const useRequest = ({ url, method, body, fields }) => {
+const useRequest = ({ url, method, body, fields, onSuccess }) => {
   const [errors, setErrors] = useState(null);
-  // Make initial state
+
+  // Make initial state dynamicaly
   const getInitialErrorState = useCallback(() => {
     const initialState = {};
     fields &&
@@ -14,20 +15,15 @@ const useRequest = ({ url, method, body, fields }) => {
     return initialState;
   }, [fields]);
 
+  // REDUCER FOR FIELD ERRORS
   const formReducer = (state, action) => {
-    if (action.type === "EMAIL_ERROR") {
-      return { ...state, email: { error: action.payload } };
-    }
-    if (action.type === "PASSWORD_ERROR") {
-      return { ...state, password: { error: action.payload } };
-    }
-    if (action.type === "GENERAL_ERROR") {
-      return { ...state, general: { error: action.payload } };
-    }
+    const field = action.payload?.field ? action.payload.field : "general";
     if (action.type === "INIT_ERROR") {
       return getInitialErrorState();
+    } else {
+      const newState = { ...state, [field]: { error: action.payload.message } };
+      return newState;
     }
-    return state;
   };
 
   const [errorState, dispatch] = useReducer(
@@ -42,12 +38,18 @@ const useRequest = ({ url, method, body, fields }) => {
         if (err.field) {
           dispatch({
             type: `${err.field.toUpperCase()}_ERROR`,
-            payload: err.message,
+            payload: {
+              field: err.field,
+              message: err.message,
+            },
           });
         } else {
           dispatch({
             type: "GENERAL_ERROR",
-            payload: err.message,
+            payload: {
+              field: "general",
+              message: err.message,
+            },
           });
         }
       });
@@ -60,7 +62,9 @@ const useRequest = ({ url, method, body, fields }) => {
     });
     try {
       const response = await axios[method](url, body);
-      return response.data;
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error) {
       const response = await error.response;
       setErrors(response.data.errors);

@@ -560,6 +560,19 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@opasnikod/common@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@opasnikod/common/-/common-1.0.2.tgz#711a5ab24b95cab74d6f20116a165f3df71dc42c"
+  integrity sha512-5kEnqPnYPwPYpRdk4pgw9/2Vv/JLRFsnoB0tzqA07GTmOV2eiaAq31tVsufTC10GklwgNF8EPendMea/57sUhg==
+  dependencies:
+    "@types/cookie-session" "^2.0.44"
+    "@types/express" "^4.17.14"
+    "@types/jsonwebtoken" "^8.5.9"
+    cookie-session "^2.0.0"
+    express "^4.18.2"
+    express-validator "^6.14.2"
+    jsonwebtoken "^8.5.1"
+
 "@sinclair/typebox@^0.24.1":
   version "0.24.47"
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.24.47.tgz#530b67163714356f93e82bdb871e7db4b7bc564e"

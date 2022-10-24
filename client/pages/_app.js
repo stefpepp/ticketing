@@ -14,7 +14,6 @@ const AppComponent = ({ Component, pageProps }) => {
 };
 
 AppComponent.getInitialProps = async (appContext) => {
-  console.log(Object.keys(appContext));
   const { data } = await buildClient(appContext.ctx).get(
     "/api/users/current-user"
   );

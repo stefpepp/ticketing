@@ -18,14 +18,6 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: us.gcr.io/ticketing-dev-nestor/client
-      context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: '**/*.js'
-            dest: .
     - image: us.gcr.io/ticketing-dev-nestor/tickets
       context: tickets
       docker:
@@ -34,3 +26,12 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: us.gcr.io/ticketing-dev-nestor/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
+    

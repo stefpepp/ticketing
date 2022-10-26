@@ -10,12 +10,16 @@ declare global {
 
 // Before everyting else, do this
 beforeAll(async () => {
+    jest.clearAllMocks();
+
     const mongo = await MongoMemoryServer.create();
     const mongoUri = mongo.getUri();
 
     await mongoose.connect(mongoUri, {});
     process.env.JWT_KEY = 'test-secret-key';
 });
+
+jest.mock('../nats-wrapper');
 
 // Before each test do this
 beforeEach(async () => {

@@ -16,7 +16,7 @@ spec:
         - name: auth
           image: us.gcr.io/ticketing-dev-nestor/auth
           env:
-            - name: MONOG_URI
+            - name: MONGO_URI
               value: 'mongodb://auth-mongo-srv:27017/auth'
             - name: JWT_KEY
               valueFrom:

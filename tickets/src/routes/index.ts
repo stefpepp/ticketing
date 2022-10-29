@@ -1,6 +1,4 @@
-import { BadRequestError, NotFoundError } from '@opasnikod/common';
 import express, { Request, Response } from 'express';
-import { validateRequest } from '@opasnikod/common';
 import { Ticket } from '../models/ticket';
 
 const router = express.Router();

@@ -1251,9 +1251,9 @@
     "@jridgewell/sourcemap-codec" "1.4.14"
 
 "@opasnikod/common@^1.0.2":
-  version "1.0.17"
-  resolved "https://registry.yarnpkg.com/@opasnikod/common/-/common-1.0.17.tgz#b8bd315cdad22502b0e79c60e5d1623d2481a193"
-  integrity sha512-lrh6uTt/2Egdfu0tf+qn7tpNABYtwH6AY3nj04ql9WqQRfbtHNWz5Eh4Lkxk627VbSfvDdGNz2rhm54jbrFviQ==
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/@opasnikod/common/-/common-1.0.18.tgz#200ebcb7ef6d7c7ad7e5260b0e77efb2935d6013"
+  integrity sha512-6xp6yS0ZNMXkGFGYLI3rewxlZdP+zv4tqXwpuhVs/ihapsCmqLLOqICrrpNuw1D1+1GCzrtkZcLlnA02FCQ5iw==
   dependencies:
     "@types/cookie-session" "^2.0.44"
     "@types/express" "^4.17.14"

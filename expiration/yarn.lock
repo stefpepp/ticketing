@@ -591,9 +591,9 @@
   integrity sha512-rIZVR48zA8hGkHIK7ED6+ZiXsjRCcAVBJbm8o89OKAMTmEAQ2QvoOxoiu3w2isAaWwzgtQIOFIqHwvZDyLKCvw==
 
 "@opasnikod/common@^1.0.2":
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/@opasnikod/common/-/common-1.0.21.tgz#9ece16d3633d78ad7d67a1a339d7cecd5302bac4"
-  integrity sha512-1H9o/xqGBlUbMTcD35kDPi0senqdrop7vmhYhqgZL6BrbCH4BaSAanpHSx0uY3p4R+tjYykdCq5htIi1DXEM9A==
+  version "1.0.22"
+  resolved "https://registry.yarnpkg.com/@opasnikod/common/-/common-1.0.22.tgz#cc1a64d5cacd93fff0fcf1ade9904b384965df61"
+  integrity sha512-PRttbD6RIVbbM4Hr0VXrVDW/0gbRPZ2vpNAk4qqWpcKGe7FxSIub3mTiriNI/4uUvz4VASPxBPOakBSNgADUWg==
   dependencies:
     "@types/cookie-session" "^2.0.44"
     "@types/express" "^4.17.14"

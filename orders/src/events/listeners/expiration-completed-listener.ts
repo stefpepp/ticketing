@@ -16,8 +16,11 @@ export class ExpirationCompletedListener extends Listener<ExpirationCompletedEve
         if (!order) {
             throw new Error('Order not fount');
         }
+        if (order.status === OrderStatus.COMPLETED) {
+            return msg.ack();
+        }
 
-        order.set({ status: OrderStatus.CANCELED });
+        order.set({ status: OrderStatus.CANCELLED });
         await order.save();
         await new OrderCancelledPublisher(natsWrapper.client).publish({
             id: order.id,

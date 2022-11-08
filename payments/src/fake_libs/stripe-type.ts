@@ -29,13 +29,9 @@ export class Stripe {
     readonly charges = {
         async create(chargeOptions: CreateChargeOptions): Promise<PaymentResult> {
             const { source } = chargeOptions;
-            console.log('source:', source);
-            //
-            const newPaymentId = randomBytes(8).toString('hex');
-            console.log('newpaymentid:', newPaymentId);
             if (source === 'tok_visa') {
                 return {
-                    id: newPaymentId,
+                    id: randomBytes(8).toString('hex'),
                     status: 'OK',
                     errors: []
                 }

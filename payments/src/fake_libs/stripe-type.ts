@@ -22,21 +22,25 @@ interface CreateChargeOptions {
 interface PaymentResult {
     id: string;
     status: string;
-    errors: string[];
+    errors: { message: string, field?: string }[];
 }
 
 export class Stripe {
     readonly charges = {
         async create(chargeOptions: CreateChargeOptions): Promise<PaymentResult> {
             const { source } = chargeOptions;
-            if (source === 'tok_visa') {
+            if (source === 'tok_visa' || source.startsWith('tok_')) {
                 return {
                     id: randomBytes(8).toString('hex'),
                     status: 'OK',
                     errors: []
                 }
+            } 
+            return {
+                id: '',
+                status: 'FAILED',
+                errors: [{ message: 'Bad token' }]
             }
-            throw new Error('Bad token');
         }
     }
 

@@ -3,7 +3,7 @@ import { body } from 'express-validator';
 import { BadRequestError, NotAuthorizedError, NotFoundError, OrderStatus, validateRequest } from '@opasnikod/common';
 import { requireAuth } from '@opasnikod/common';
 import { Order } from '../models/Order';
-import { CURRENCIES, token } from '../fake_libs/stripe-type';
+import { CURRENCIES } from '../fake_libs/stripe-type';
 import { fakeStripe } from '../stripe';
 import { Payment } from '../models/payment';
 import { PaymentCreatedPublisher } from '../events/publishers/payment-created-publisher';
@@ -34,22 +34,25 @@ router.post('/api/payments', requireAuth,
         const charge = await fakeStripe.charges.create({
             currency: CURRENCIES.USD,
             amount: order.price * 100,
-            source: token
+            source: req.body.token
         })
+        if (charge.status === 'OK') {
+            const payment = Payment.build({
+                orderId: order.id,
+                stripeId: charge.id
+            })
 
-        const payment = Payment.build({
-            orderId: order.id,
-            stripeId: charge.id
-        })
+            await payment.save();
+            new PaymentCreatedPublisher(natsWrapper.client).publish({
+                id: payment.id,
+                orderId: payment.orderId,
+                stripeId: payment.stripeId
+            });
 
-        await payment.save();
-        new PaymentCreatedPublisher(natsWrapper.client).publish({
-            id: payment.id,
-            orderId: payment.orderId,
-            stripeId: payment.stripeId
-        });
-
-        res.status(201).send({ id: payment.id });
+            res.status(201).send({ id: payment.id });
+        } else {
+            throw new BadRequestError(charge.errors[0].message);
+        }
     });
 
 export { router as createChargeRouter };

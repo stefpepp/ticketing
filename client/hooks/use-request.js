@@ -55,15 +55,18 @@ const useRequest = ({ url, method, body, fields, onSuccess }) => {
       });
   }, [errors]);
 
-  const doRequest = async () => {
+  const doRequest = async (props) => {
     setErrors(null);
     dispatch({
       type: "INIT_ERROR",
     });
     try {
-      const response = await axios[method](url, body);
+      const response = await axios[method](url, {
+        ...body,
+        ...props,
+      });
       if (onSuccess) {
-        onSuccess();
+        onSuccess(response.data);
       }
     } catch (error) {
       const response = await error.response;

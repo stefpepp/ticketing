@@ -16,6 +16,7 @@ export class ExpirationCompletedListener extends Listener<ExpirationCompletedEve
         if (!order) {
             throw new Error('Order not fount');
         }
+
         if (order.status === OrderStatus.COMPLETED) {
             return msg.ack();
         }

@@ -1,14 +1,11 @@
-import request from 'supertest';
-import { app } from '../../app';
+import express from "express";
 
-it('Expect cookie to be cleared on signout', async () => {
-    global.signin();
+const router = express.Router();
 
-    const response = await request(app)
-        .post('/api/users/signout')
-        .send({
+router.post("/api/users/signout", (req, res) => {
+    req.session = null;
 
-        })
-        .expect(200);
-    expect(response.get('Set-Cookie')[0]).toBe("session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; httponly");
+    res.send({});
 });
+
+export { router as signoutRouter };

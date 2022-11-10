@@ -16,7 +16,7 @@ const start = async () => {
         console.error('Unsuccessful connection to db', err);
     }
     app.listen(3000, () => {
-        console.log('Listening on port: 3000!');
+        console.log('Listening on port: 3000!!');
     });
 }
 

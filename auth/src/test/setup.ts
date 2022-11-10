@@ -11,6 +11,8 @@ declare global {
 
 // Before everyting else, do this
 beforeAll(async () => {
+    jest.clearAllMocks();
+
     const mongo = await MongoMemoryServer.create();
     const mongoUri = mongo.getUri();
 
@@ -29,11 +31,11 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
+    await mongoose.connection.close();
     if (mongo) {
         await mongo.stop();
     }
-    await mongoose.connection.close();
-})
+});
 
 global.signin = async () => {
     const email = 'test@jest.com';

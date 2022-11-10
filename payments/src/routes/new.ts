@@ -35,7 +35,7 @@ router.post('/api/payments', requireAuth,
             currency: CURRENCIES.USD,
             amount: order.price * 100,
             source: req.body.token
-        })
+        });
         if (charge.status === 'OK') {
             const payment = Payment.build({
                 orderId: order.id,

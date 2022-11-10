@@ -22,3 +22,5 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=stefannestor3008
 # list all secretes in kubernates
 kubectl get secrets
 
+# on gcloud image should take value 
+us.gcr.io/ticketing-dev-nestor/auth   - or for the last part, behind the forslash, service name

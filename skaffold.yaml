@@ -11,7 +11,7 @@ build:
   googleCloudBuild:
     projectId: ticketing-dev-nestor
   artifacts:
-    - image: us.gcr.io/ticketing-dev-nestor/auth
+    - image: stefanopasni/auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -19,7 +19,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: us.gcr.io/ticketing-dev-nestor/tickets
+    - image: stefanopasni/tickets
       context: tickets
       docker:
         dockerfile: Dockerfile
@@ -27,7 +27,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: us.gcr.io/ticketing-dev-nestor/orders
+    - image: stefanopasni/orders
       context: orders
       docker:
         dockerfile: Dockerfile
@@ -35,7 +35,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: us.gcr.io/ticketing-dev-nestor/expiration
+    - image: stefanopasni/expiration
       context: expiration
       docker:
         dockerfile: Dockerfile
@@ -43,7 +43,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: us.gcr.io/ticketing-dev-nestor/payments
+    - image: stefanopasni/payments
       context: payments
       docker:
         dockerfile: Dockerfile
@@ -51,7 +51,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: us.gcr.io/ticketing-dev-nestor/client
+    - image: stefanopasni/client
       context: client
       docker:
         dockerfile: Dockerfile

@@ -11,6 +11,8 @@ declare global {
 
 // Before everyting else, do this
 beforeAll(async () => {
+    jest.clearAllMocks();
+
     const mongo = await MongoMemoryServer.create();
     const mongoUri = mongo.getUri();
 

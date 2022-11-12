@@ -15,7 +15,7 @@ const LandingPage = ({ currentUser, tickets }) => {
   return (
     <>
       {currentUser ? (
-        <h1>HELLO {currentUser.email}!!</h1>
+        <h1>HELLO {currentUser.email}!</h1>
       ) : (
         <h1>YOU ARE SIGNED OUT</h1>
       )}

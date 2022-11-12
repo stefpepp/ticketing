@@ -6,7 +6,7 @@ export const buildClient = ({ req }) => {
   const serverside = typeof window === "undefined";
   const baseUrlConf = serverside
     ? {
-        baseURL: "http://www.ticketing-nestor.online",
+        baseURL: "http://www.ticketing-nestor.online/",
         //"http://ingress-nginx-controller.ingress-nginx.svc.cluster.local",
         headers: req.headers,
       }

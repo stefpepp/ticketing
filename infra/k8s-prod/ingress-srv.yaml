@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: ingress-service
   annotations:
-    ingressClassName: nginx
+    ingressClassName: nginx: nginx
     nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
   rules:
